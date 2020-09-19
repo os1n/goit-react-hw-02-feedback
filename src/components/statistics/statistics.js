@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from 'react';
 
 export default function Statistics({
   good,
@@ -7,8 +7,10 @@ export default function Statistics({
   total,
   positivePercentage,
 }) {
+
   return (
     <>
+      <h2>Statistics</h2>
       <h3>
         Good: <span>{good}</span>
       </h3>
