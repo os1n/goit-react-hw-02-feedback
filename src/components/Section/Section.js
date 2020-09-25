@@ -1,18 +1,22 @@
-import React, { Component } from 'react';
+import React from 'react';
 import FeedbackOptions from '../feedbackOptions/feedbackOptions';
+import PropTypes from 'prop-types';
 
-export default class Section extends Component {
-  render() {
-    return (
-      <>
-        <h1>Section Stats</h1>
-        <h2>{this.props.title}</h2>
+export default function Section(props) {
+  return (
+    <>
+      <h1>Section Stats</h1>
+      <h2>{props.title}</h2>
 
-        <FeedbackOptions
-          options={this.props.options}
-          onLeaveFeedback={this.props.onLeaveFeedback}
-        />
-      </>
-    );
-  }
+      <FeedbackOptions
+        options={props.options}
+        onLeaveFeedback={props.onLeaveFeedback}
+      />
+    </>
+  );
 }
+
+Section.propTypes = {
+  title: PropTypes.string,
+  options: PropTypes.array,
+};

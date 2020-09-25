@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Section from './Section/Section';
 import Statistics from './statistics/statistics';
-// import FeedbackOptions from './feedbackOptions/feedbackOptions';
 import styles from './App.moodule.css';
 
 export default class App extends Component {
@@ -18,17 +17,17 @@ export default class App extends Component {
   };
 
   countTotalFeedback = object => {
-    //console.log(Object.values(object));
     return Object.values(object).reduce((a, b) => a + b, 0);
   };
 
   countPositiveFeedbackPercentage(object) {
-    return object.good !== 0
-      ? (
-          (+object.good * 100) /
-          Object.values(object).reduce((a, b) => a + b, 0)
-        ).toFixed(2)
-      : 100;
+    let positiveFeedbackPercentage = (
+      (object.good * 100) /
+      Object.values(object).reduce((a, b) => a + b, 0)
+    ).toFixed(2);
+
+    if (object.good !== 0) return positiveFeedbackPercentage;
+    else return 0;
   }
 
   incrementState = value => {
@@ -43,19 +42,16 @@ export default class App extends Component {
     let total = this.countTotalFeedback(this.state);
     let positivePercent = this.countPositiveFeedbackPercentage(this.state);
 
-    // console.log('Summ of state', Object.values(this.state).join(''));
-
     return (
       <>
         <section className={styles.container}>
-          {/* Section to control the feedback data */}
           <Section
             title="Please leave feedback!!"
             options={[good, bad, neutral]}
             onLeaveFeedback={this.incrementState}
-          />          
+          />
 
-          {Object.values(this.state).join('') !== '000' && (
+          {this.countTotalFeedback(this.state) !== 0 && (
             <Statistics
               good={good}
               neutral={neutral}
