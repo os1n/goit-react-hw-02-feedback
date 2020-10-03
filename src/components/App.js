@@ -20,15 +20,14 @@ export default class App extends Component {
     return Object.values(object).reduce((a, b) => a + b, 0);
   };
 
-  countPositiveFeedbackPercentage(object) {
+  countPositiveFeedbackPercentage = () => {
     let positiveFeedbackPercentage = (
-      (object.good * 100) /
-      Object.values(object).reduce((a, b) => a + b, 0)
+      (this.state.good * 100) /
+      Object.values(this.state).reduce((a, b) => a + b, 0)
     ).toFixed(2);
 
-    if (object.good !== 0) return positiveFeedbackPercentage;
-    else return 0;
-  }
+    return this.state.good !== 0 ? positiveFeedbackPercentage : 0;
+  };
 
   incrementState = value => {
     this.setState(prevState => {
@@ -40,7 +39,7 @@ export default class App extends Component {
     const { good, neutral, bad } = this.state;
 
     let total = this.countTotalFeedback(this.state);
-    let positivePercent = this.countPositiveFeedbackPercentage(this.state);
+    let positivePercent = this.countPositiveFeedbackPercentage();
 
     return (
       <>

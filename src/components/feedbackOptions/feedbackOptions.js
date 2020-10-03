@@ -4,8 +4,6 @@ import propTypes from 'prop-types';
 export default function FeedbackOptions(props) {
   return (
     <>
-      <h2> Feedback options </h2>
-
       <button
         type="button"
         onClick={evt => {

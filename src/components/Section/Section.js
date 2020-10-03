@@ -7,11 +7,10 @@ export default function Section(props) {
     <>
       <h1>Section Stats</h1>
       <h2>{props.title}</h2>
-
+      <h2> Feedback options </h2>
       <FeedbackOptions
-        options={props.options}
         onLeaveFeedback={props.onLeaveFeedback}
-      />
+      ></FeedbackOptions>
     </>
   );
 }
